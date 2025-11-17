@@ -8,4 +8,5 @@ import com.enquirysystem.enquirysystem.Entity.User_Details;
 @Repository
 public interface UserDetailsRepo extends JpaRepository<User_Details, Integer> {
 
+	public User_Details findByEmail(String email);
 }

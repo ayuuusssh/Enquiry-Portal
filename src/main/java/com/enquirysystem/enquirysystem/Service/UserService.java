@@ -1,5 +1,9 @@
 package com.enquirysystem.enquirysystem.Service;
 
-public class UserService {
+import com.enquirysystem.enquirysystem.Bindings.SignupForm;
+
+public interface UserService {
+
+    public boolean signup(SignupForm form);
 
 }

@@ -3,9 +3,12 @@ package com.enquirysystem.enquirysystem.Entity;
 import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +21,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="Student-enquiry") 
+@Table(name="student-enquiry") 
 public class Student_Enquiry {
 	
 	@Id
@@ -32,7 +35,11 @@ public class Student_Enquiry {
 	private String enquiryStatus;
 	private LocalDate createdDate;
 	private LocalDate updatedDate;
-	private Integer userId;
+	
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User_Details user;
+	
 	public Integer getEnquiryId() {
 		return enquiryId;
 	}
@@ -81,13 +88,4 @@ public class Student_Enquiry {
 	public void setUpdatedDate(LocalDate updatedDate) {
 		this.updatedDate = updatedDate;
 	}
-	public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-	
-	
-
 }

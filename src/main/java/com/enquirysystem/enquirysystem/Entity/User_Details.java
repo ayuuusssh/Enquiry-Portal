@@ -1,8 +1,13 @@
 package com.enquirysystem.enquirysystem.Entity;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,34 +20,39 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="User-Details")
+@Table(name="user-details")
 public class User_Details {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer userID;
-	private String fullName;;
-	private Long phoneNumber;
+	private Integer userId;
+	private String name;;
+	private Long phone;
 	private String email;
 	private String accountStatus;
+	private String pwd;
 	
-	public Integer getUserID() {
-		return userID;
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Student_Enquiry> enquiries;
+	
+	public Integer getUserId() {
+		return userId;
 	}
-	public void setUserID(Integer userID) {
-		this.userID = userID;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	public String getFullName() {
-		return fullName;
+
+	public String getName() {
+		return name;
 	}
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public Long getPhoneNumber() {
-		return phoneNumber;
+	public Long getPhone() {
+		return phone;
 	}
-	public void setPhoneNumber(Long phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhone(Long phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -56,7 +66,10 @@ public class User_Details {
 	public void setAccountStatus(String accountStatus) {
 		this.accountStatus = accountStatus;
 	}
-	
-	
-
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
 }

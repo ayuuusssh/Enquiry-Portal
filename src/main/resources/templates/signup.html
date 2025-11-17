@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,29 +15,25 @@
     <h2 class="text-center mb-3">Create Account</h2>
     <p class="text-center text-muted">Please fill in this form to create an account.</p>
     <hr>
+    <div th:if="${succMsg}" class="alert alert-success" th:text="${succMsg}"></div>
+<div th:if="${errorMsg}" class="alert alert-danger" th:text="${errorMsg}"></div>
 
-    <form>
+
+    <form th:action="@{/signup}" th:object="${user}"  method="POST">
 
       <div class="mb-3">
         <label class="form-label"><b>Name</b></label>
-        <input type="text" class="form-control" placeholder="Enter Name" required>
+        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter Name" required>
       </div>
 
       <div class="mb-3">
         <label class="form-label"><b>Email</b></label>
-        <input type="text" class="form-control" placeholder="Enter Email" required>
+        <input type="text" th:field="*{email}" class="form-control" placeholder="Enter Email" required>
       </div>
 
       <div class="mb-3">
         <label class="form-label"><b>PhoneNumber</b></label>
-        <input type="number" class="form-control" placeholder="Enter Number" required>
-      </div>
-
-      <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" checked id="rememberMe">
-        <label class="form-check-label" for="rememberMe">
-          Remember me
-        </label>
+        <input type="number" th:field="*{phone}" class="form-control" placeholder="Enter Number" required>
       </div>
 
       <p class="text-muted" style="font-size: 14px;">

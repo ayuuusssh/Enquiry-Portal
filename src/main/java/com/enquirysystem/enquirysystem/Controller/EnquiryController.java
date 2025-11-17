@@ -10,5 +10,13 @@ public class EnquiryController {
 	public String dashboard() {
 		return "dashboard";
 	}
+	@GetMapping("/viewenquiry")
+	public String viewEnquiry() {
+		return "viewenquiry";
+	}
+	@GetMapping("/addenquiry")
+	public String addEnquiry() {
+		return "addenquiry";
+	}
 
 }
