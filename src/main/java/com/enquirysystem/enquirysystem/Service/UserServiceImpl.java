@@ -1,6 +1,8 @@
 package com.enquirysystem.enquirysystem.Service;
 
+import com.enquirysystem.enquirysystem.Bindings.LoginForm;
 import com.enquirysystem.enquirysystem.Bindings.SignupForm;
+import com.enquirysystem.enquirysystem.Bindings.UnlockForm;
 import com.enquirysystem.enquirysystem.Entity.User_Details;
 import com.enquirysystem.enquirysystem.Repository.UserDetailsRepo;
 import com.enquirysystem.enquirysystem.Utils.EmailUtils;
@@ -31,7 +33,7 @@ public class UserServiceImpl implements UserService{
         
         
         entity.setPwd(tempPwd);
-        entity.setAccountStatus("Locked");
+        entity.setAccountStatus("LOCKED");
 
         userDetailsRepo.save(entity);
         
@@ -46,4 +48,32 @@ public class UserServiceImpl implements UserService{
 
         return true;
     }
+
+	@Override
+	public boolean unlockAccount(UnlockForm form) {
+		User_Details entity =userDetailsRepo.findByEmail(form.getEmail());
+
+		if(entity.getPwd().equals(form.getTempPwd())) {
+			entity.setPwd(form.getNewPwd());
+			entity.setAccountStatus("UNLOCKED");
+			userDetailsRepo.save(entity);
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	@Override
+	public String login(LoginForm form) {
+		User_Details entity = userDetailsRepo.findByEmailAndPwd(form.getEmail(), form.getPwd());
+		if(entity==null) {
+			return "Invalid Credentials";
+		}
+		if(entity.getAccountStatus().equals("LOCKED")){
+			return "Your Account Locked";
+		}
+		return "success";
+	}
+
+
 }

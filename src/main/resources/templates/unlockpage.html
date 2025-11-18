@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,18 +15,29 @@
     <h3 class="text-center mb-3">Unlock Account</h3>
     <p class="text-center text-muted mb-4">Enter your registered details to unlock your account</p>
 
-    <form action="/unlock-account" method="post">
+
+<p th:text="${errMsg}" class="text-danger"></p>
+<p th:text="${sucessMsg}" class="text-success"></p>
+    <form th:action="@{/unlockpage}" th:object="${unlock}" method="POST">
       
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="email" class="form-control" placeholder="Enter your email" required>
       </div>
+<div class="mb-3">
+        <label class="form-label">Temporary Password</label>
+        <input type="email" class="form-control" th:field="*{tempPwd}" placeholder="Enter your email" required>
+      </div>
+<div class="mb-3">
+        <label class="form-label">New Password</label>
+        <input type="email" class="form-control" th:field="*{newPwd}" placeholder="Enter your email" required>
+      </div>
 
       <div class="mb-3">
-        <label class="form-label">Mobile Number</label>
-        <input type="text" class="form-control" placeholder="Enter your mobile number" required>
+        <label class="form-label">Confirm Password</label>
+        <input type="text" class="form-control" th:field="*{confirmPwd}" placeholder="Enter your mobile number" required>
       </div>
-      <button type="submit" class="btn btn-primary w-100 mt-3">Unlock Account</button>
+      <button type="submit" class="btn btn-primary w-100 mt-3"value="Unlock">Unlock Account</button>
       
       <p class="text-center mt-3">
         <a href="/login" class="text-decoration-none">Back to Login</a>
