@@ -7,6 +7,9 @@ import com.enquirysystem.enquirysystem.Entity.User_Details;
 import com.enquirysystem.enquirysystem.Repository.UserDetailsRepo;
 import com.enquirysystem.enquirysystem.Utils.EmailUtils;
 import com.enquirysystem.enquirysystem.Utils.PwdUtils;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,8 @@ public class UserServiceImpl implements UserService{
 	private UserDetailsRepo userDetailsRepo;
 	@Autowired
 	private EmailUtils emailUtils;
+	@Autowired
+	private HttpSession session;
  
     @Override
     public boolean signup(SignupForm form) {
@@ -72,7 +77,25 @@ public class UserServiceImpl implements UserService{
 		if(entity.getAccountStatus().equals("LOCKED")){
 			return "Your Account Locked";
 		}
+		
+		session.setAttribute("userId", entity.getUserId());
+		
 		return "success";
+	}
+
+	@Override
+	public boolean forgot(String email) {
+		User_Details entity = userDetailsRepo.findByEmail(email);
+		
+		if(entity==null) {
+			return false;
+		}
+		
+		String subject = "Recovered password";
+		String body = "Your recovered password"+entity.getPwd();
+		
+		emailUtils.sendMail(email, subject, body);
+		return true;
 	}
 
 

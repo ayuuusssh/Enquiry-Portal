@@ -13,12 +13,15 @@ import com.enquirysystem.enquirysystem.Bindings.SignupForm;
 import com.enquirysystem.enquirysystem.Bindings.UnlockForm;
 import com.enquirysystem.enquirysystem.Service.UserService;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private HttpSession session;
 	
 	@GetMapping("/signup")
 	public String signup(Model model) {
@@ -61,6 +64,18 @@ public class UserController {
 		return "forgotpwd";
 	}
 	
+	@PostMapping("/forgotpwd")
+	public boolean forgotPwd(@RequestParam ("email") String email, Model model) {
+		boolean status = userService.forgot(email);
+		if(status) {
+			model.addAttribute("sucessMsg", "Password send to your mail");
+		}else {
+			model.addAttribute("errMsg", "Invalid Mail");
+		}
+		return true;
+	}
+	
+	
 	@GetMapping("/unlockpage")
 	public String unlockPage(@RequestParam String email, Model model) {
 		UnlockForm unlock = new UnlockForm();
@@ -83,6 +98,12 @@ public class UserController {
 			model.addAttribute("errMsg","New Password and Confirm Password must be same");	
 		}
 		return "unlock";
+	}
+	
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "index";
 	}
 
 }

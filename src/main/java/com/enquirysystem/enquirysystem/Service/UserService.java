@@ -11,5 +11,7 @@ public interface UserService {
    public boolean unlockAccount(UnlockForm form);
    
    public String login(LoginForm form);
+   
+   public boolean forgot(String email);
 
 }

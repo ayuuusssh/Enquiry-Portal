@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,9 @@
             Enter your email address and we’ll send you a link to reset your password.
         </p>
 
-        <form>
+<p th:text="${successMsg}" class="text-success"></p>
+<p th:text="${errMsg}" class="text-danger"></p>
+        <form th:action="@{/forgotpwd}" method="POST">
             <div class="form-group mb-3">
                 <label for="email">Email Address</label>
                 <input type="email"
@@ -27,7 +29,7 @@
                        required>
             </div>
 
-            <button type="submit" class="btn btn-primary w-100 py-2" style="font-size: 16px;">
+            <button type="submit" class="btn btn-primary w-100 py-2" value="submit" style="font-size: 16px;">
                 Send Reset Link
             </button>
         </form>
