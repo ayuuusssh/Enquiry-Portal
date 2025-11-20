@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
        <meta charset="utf-8">
        <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +45,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Total Enquiries</h5>
-                    <p class="display-6 fw-bold text-primary">128</p>
+                    <p class="display-6 fw-bold text-primary" th:text="${dashboardData.totalEnquiryCnt}"></p>
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Enrolled</h5>
-                    <p class="display-6 fw-bold text-success">85</p>
+                    <p class="display-6 fw-bold text-success" th:text="${dashboardData.enrollCnt}"></p>
                 </div>
             </div>
         </div>
@@ -65,7 +65,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Lost</h5>
-                    <p class="display-6 fw-bold text-danger">63</p>
+                    <p class="display-6 fw-bold text-danger" th:text="${dashboardData.lostCnt}"></p>
                 </div>
             </div>
         </div>

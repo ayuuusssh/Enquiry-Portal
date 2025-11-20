@@ -8,13 +8,13 @@ import com.enquirysystem.enquirysystem.Bindings.EnquirySearchCriteria;
 
 public interface EnquiryService {
 	
-	public String getCourseName();
+	public List<String> getCourseName();
 	
-	public String getEnquiryStatus();
+	public List<String> getEnquiryStatus();
 	
 	public DashboardResponse getDashboardData(Integer userId);
 	
-	public String addEnquiry(EnquiryForm form); 
+	public boolean saveEnquiry(EnquiryForm form); 
 	
 	public List<EnquiryForm> getEnquiries(Integer userId,EnquirySearchCriteria searchCriteria); 
 

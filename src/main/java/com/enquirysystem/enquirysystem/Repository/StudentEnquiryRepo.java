@@ -8,4 +8,5 @@ import com.enquirysystem.enquirysystem.Entity.Student_Enquiry;
 @Repository
 public interface StudentEnquiryRepo extends JpaRepository<Student_Enquiry, Integer> {
 
+	
 }

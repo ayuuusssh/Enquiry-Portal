@@ -36,7 +36,7 @@ public class Student_Enquiry {
 	private LocalDate createdDate;
 	private LocalDate updatedDate;
 	
-	@ManyToOne (fetch = FetchType.LAZY)
+	@ManyToOne 
 	@JoinColumn(name="user_id")
 	private User_Details user;
 	
@@ -88,4 +88,11 @@ public class Student_Enquiry {
 	public void setUpdatedDate(LocalDate updatedDate) {
 		this.updatedDate = updatedDate;
 	}
+	public User_Details getUser() {
+		return user;
+	}
+	public void setUser(User_Details user) {
+		this.user = user;
+	}
+	
 }

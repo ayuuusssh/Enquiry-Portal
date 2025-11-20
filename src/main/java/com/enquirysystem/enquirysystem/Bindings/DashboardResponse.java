@@ -4,27 +4,28 @@ package com.enquirysystem.enquirysystem.Bindings;
 
 public class DashboardResponse {
 
-	private String totalEnquiryCnt;
-	private String enrollCnt;
-	private String lostCnt;
-	public String getTotalEnquiryCnt() {
+	private Integer totalEnquiryCnt;
+	private Integer enrollCnt;
+	private Integer lostCnt;
+	public Integer getTotalEnquiryCnt() {
 		return totalEnquiryCnt;
 	}
-	public void setTotalEnquiryCnt(String totalEnquiryCnt) {
+	public void setTotalEnquiryCnt(Integer totalEnquiryCnt) {
 		this.totalEnquiryCnt = totalEnquiryCnt;
 	}
-	public String getEnrollCnt() {
+	public Integer getEnrollCnt() {
 		return enrollCnt;
 	}
-	public void setEnrollCnt(String enrollCnt) {
+	public void setEnrollCnt(Integer enrollCnt) {
 		this.enrollCnt = enrollCnt;
 	}
-	public String getLostCnt() {
+	public Integer getLostCnt() {
 		return lostCnt;
 	}
-	public void setLostCnt(String lostCnt) {
+	public void setLostCnt(Integer lostCnt) {
 		this.lostCnt = lostCnt;
 	}
+	
 	
 	
 	

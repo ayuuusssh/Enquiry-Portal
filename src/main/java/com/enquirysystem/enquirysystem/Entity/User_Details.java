@@ -72,4 +72,11 @@ public class User_Details {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	public List<Student_Enquiry> getEnquiries() {
+		return enquiries;
+	}
+	public void setEnquiries(List<Student_Enquiry> enquiries) {
+		this.enquiries = enquiries;
+	}
+	
 }

@@ -99,11 +99,4 @@ public class UserController {
 		}
 		return "unlock";
 	}
-	
-	@GetMapping("/logout")
-	public String logout() {
-		session.invalidate();
-		return "index";
-	}
-
 }
